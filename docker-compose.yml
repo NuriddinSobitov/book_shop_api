@@ -1,0 +1,32 @@
+version: "3"
+
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - 8077:8077
+    depends_on:
+      - db
+      - minio
+    command: >
+      sh -c "python3 manage.py migrate &&
+             python3 manage.py runserver 0.0.0.0:8077"
+
+  db:
+    image: postgres:15-alpine
+
+    environment:
+      - POSTGRES_PASSWORD=1
+      - POSTGRES_DB=p8_db
+
+  minio:
+    image: minio/minio
+    ports:
+      - 9000:9000
+      - 9001:9001
+    environment:
+      - MINIO_ACCESS_KEY=minioadmin
+      - MINIO_SECRET_KEY=minioadmin
+
+

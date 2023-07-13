@@ -15,6 +15,7 @@ pdfreader = "^0.1.12"
 pypdf2 = "^3.0.1"
 django-filter = "^23.2"
 django-rest-swagger = "^2.2.0"
+load-dotenv = "^0.1.0"
 
 
 [build-system]
